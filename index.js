@@ -8,7 +8,9 @@ const client = redis.createClient({
     host: "localhost",
     port: 6379
 })
-
+client.on("error", function (err) {
+    console.log("Error " + err);
+});
 client.set = util.promisify(client.set)  //for async actions
 client.get = util.promisify(client.get)  //for async actions
 const app = express();
